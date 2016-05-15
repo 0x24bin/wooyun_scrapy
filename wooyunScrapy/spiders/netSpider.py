@@ -33,7 +33,7 @@ class GetSql(scrapy.spiders.Spider):
                 if self.is_struts(i):
                     if 'http' in i:
                         item = url()
-                        item('url') = i
+                        item['url'] = i
                         return item
                     else:
                         item = url()
