@@ -9,9 +9,13 @@ from wooyunScrapy.items import url
 class GetSql(scrapy.spiders.Spider):
     """本地的=带上url输出 不是本地的= 直接输出"""
     name = 'subDomain'
-    file_name = '/home/fang/LifeNeedLove/ScanSql/所有教育网站的二级域名'
-    file_toSave = open('/home/fang/LifeNeedLove/ScanSql/教育网站带=的域名','w+')
-    start_urls = [i.strip('\n') for i in open(file_name).readlines()]
+    file_name = './targets'
+    start_urls = []
+    for i in open(file_name).readlines():
+        if 'http' in i:
+            start_urls.append(i.strip('\n'))
+        else:
+            start_urls.append('http://%s'%i.strip('\n'))
     #start_urls = ['http://www.sdu.edu.cn']
     #----------------------------------------------------------------------
     def is_struts(self,url):
@@ -23,7 +27,7 @@ class GetSql(scrapy.spiders.Spider):
     #----------------------------------------------------------------------
     def parse(self,response):
         """还是找struts命令执行比较靠谱"""
-        for i in BeautifulSoup(respnse.body,'lxml').findAll('a'):
+        for i in BeautifulSoup(response.body,'lxml').findAll('a'):
             if i.has_attr('href'):
                 i = i['href']
                 if self.is_struts(i):
@@ -33,7 +37,7 @@ class GetSql(scrapy.spiders.Spider):
                         return item
                     else:
                         item = url()
-                        item['url'] = "%s/%s"%(respnse.url,href)
+                        item['url'] = "%s/%s"%(response.url,i)
                         return item
 #----------------------------------------------------------------------
     def parse1__(self,respnse):
