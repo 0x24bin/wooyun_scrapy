@@ -16,7 +16,7 @@ class GetSql(scrapy.spiders.Spider):
     #----------------------------------------------------------------------
     def is_struts(self,url):
         """"""
-        if '.action' in url or '.do' in url:
+        if '.action' in url or '.do' in url and '.doc' not in url:
             if 'php' not in url and 'asp' not in url:
                 return True
         return False
@@ -30,11 +30,11 @@ class GetSql(scrapy.spiders.Spider):
                     if 'http' in i:
                         item = url()
                         item('url') = i
-                        yield item
+                        return item
                     else:
                         item = url()
                         item['url'] = "%s/%s"%(respnse.url,href)
-                        yield item
+                        return item
 #----------------------------------------------------------------------
     def parse1__(self,respnse):
         """用来找sql注入的解析器,实际效果并不理想...不要这个了"""
