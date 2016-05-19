@@ -7,6 +7,7 @@
 
 import scrapy
 
+
 class WooyunSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
@@ -20,17 +21,13 @@ class WooyunSpiderItem(scrapy.Item):
     tags = scrapy.Field() # tag
     type_ = scrapy.Field() # 漏洞类型
     changshang_rank = scrapy.Field() # 厂商给的rank
-class text(scrapy.Item):
-    text = scrapy.Field() #网页内容
-    url = scrapy.Field() # 网页url
-    title = scrapy.Field() # 网页的标题
+
 class Item(scrapy.Item):
     title = scrapy.Field() #网页标题
-    url = scrapy.Field() # 网站的链接
+    url = scrapy.Field()
     text = scrapy.Field() #网页内容
     friend_url = scrapy.Field() # 友情链接
     back_type = scrapy.Field() # 网页后台技术
-    ip = scrapy.Field() # 网站归属地
+    ip = scrapy.Field() # 
     sql_url = scrapy.Field() #网页内带=的链接
     action_url = scrapy.Field() # 带有action或者do
-    cms = scrapy.Field() # 网页cms技术

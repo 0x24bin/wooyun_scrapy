@@ -6,10 +6,14 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import codecs
 import json
+import sys
+reload( sys )
+sys.setdefaultencoding('utf-8')
 
 class WooyunscrapyPipeline(object):
     def __init__(self):
         self.file = codecs.open("out.json",'wb',encoding="utf-8")
+#         self.file = codecs.open("out.json",'wb')
     def process_item(self, item, spider):
         line = json.dumps(dict(item), ensure_ascii=False) + '\n'
         self.file.write(line)
