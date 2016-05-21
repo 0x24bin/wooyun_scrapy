@@ -62,7 +62,8 @@ NEWSPIDER_MODULE = 'wooyunScrapy.spiders'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-'wooyunScrapy.pipelines.WooyunscrapyPipeline': 300,
+#'wooyunScrapy.pipelines.WooyunscrapyPipeline': 300,
+'wooyunScrapy.pipelines.MongoDBPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -83,3 +84,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# Seting of MongoDB
+MONGODB_SERVER = "localhost" 
+MONGODB_PORT = 27017 
+MONGODB_DB = "edu_cn" 
+MONGODB_COLLECTION = "text"

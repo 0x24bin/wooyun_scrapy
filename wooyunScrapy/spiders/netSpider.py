@@ -36,7 +36,7 @@ class GetSql(scrapy.spiders.Spider):
         """只保存网页内容"""
         a = text()
         a['url'] = response.url
-        a['text'] = response.body
+        a['text'] = response.body.decode(response.encoding)
         title = response.xpath('//title/text()').extract()
         if title:
             a['title'] = title[0]
